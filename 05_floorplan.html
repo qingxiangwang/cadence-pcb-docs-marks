@@ -1,0 +1,760 @@
+
+<html><head><title>Floorplanning</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="rganguli" />
+<meta name="CreateDate" content="2020-03-01" />
+<meta name="CreateTime" content="1583134402" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="This user guide familiarizes you with the Allegro PCB SI solution." />
+<meta name="DocTitle" content="Allegro PCB SI User Guide" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Floorplanning" />
+<meta name="FileType" content="Chapter" />
+<meta name="FMWikiRelease" content="FM-Wiki-3.0_P001_HF1" />
+<meta name="Keyword" content="squg" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2020-03-01" />
+<meta name="ModifiedTime" content="1583134402" />
+<meta name="NextFile" content="06_xtract.html" />
+<meta name="Group" content="Signal Integrity" />
+<meta name="Platform" content="Silicon-Package-Board Co-Design" />
+<meta name="PrevFile" content="04_simsetup.html" />
+<meta name="Product" content="Allegro PCB SI" />
+<meta name="ProductFamily" content="Allegro PCB SI" />
+<meta name="ProductVersion" content="17.4-2019" />
+<meta name="RightsManagement" content="Copyright 2012-2020 Cadence Design Systems Inc." />
+<meta name="Title" content="Allegro PCB SI User Guide -- Floorplanning" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="" />
+<meta name="reference_type" content="" />
+<meta name="product_feature" content="" />
+<meta name="product_subfeature" content="" />
+<meta name="Version" content="17.4-2019" />
+<meta name="SpaceKey" content="squg1742019" />
+<meta name="webflare-version" content="1.5" />
+<link rel="stylesheet" href="styles/webflare.css" type="text/css" /></head><body style="background-color: #FFFFFF;"><a name="pagetop"></a>
+<!-- Begin Buttons -->
+<header><div class="docHeadr">Product Documentation<img src="icons/Cadence-Logo.jpg" /></div><nav class="blueHead"><ul><li><a class="content" href="squgTOC.html">Contents</a></li><li><a class="prev" href="04_simsetup.html" title="Transmission Line Simulation">Transmission Line Simulation</a></li><li style="float: right;"><a class="viewPrint" href="squg.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="06_xtract.html" title="Topology Extraction">Topology Extraction</a></li></ul></nav></header>
+<!-- End Buttons -->
+<h5><center>Allegro PCB SI User Guide<br />Product Version 17.4-2019, October 2019</center></h5><div id="main-content" style="min-height: 50vh; margin-left: 5%; margin-right: 2%;"><a name="#firstpage"></a>
+
+<h1>5
+<a id="pgfId-1032955"></a></h1>
+<h1>
+<a id="pgfId-1035250"></a><hr />
+<a id="44786"></a>Floorplanning<hr />
+</h1>
+<h2>
+<a id="pgfId-1038132"></a><a id="57714"></a>Introduction</h2>
+
+<p>
+<a id="pgfId-1038140"></a>Floorplanning in PCB SI allows you to bring layout decisions to the forefront of the design cycle. SI provides a physical view of your design and allows you to do <br />system-level topology and floorplanning exploration. It functions as both a pre-route editor and post-route analysis tool that enables you to quickly develop and verify net topologies and constraints for the high-speed circuits in your design.</p>
+<p>
+<a id="pgfId-1045577"></a>Using SI you can:</p>
+<ul><li>
+<a id="pgfId-1045598"></a>perform database setup requirements for high-speed circuit simulation. See <a href="02_flow.html#16430">Setting up the Design</a></li><li>
+<a id="pgfId-1045643"></a>identify rooms for critical component placement. For example, you may want to separate analog components from digital components by confining the analog components to a specific room area on the board. See <a href="05_floorplan.html#41123">Room Outlines</a>.</li><li>
+<a id="pgfId-1045661"></a>evaluate the effects of different placement strategies on design behavior.</li><li>
+<a id="pgfId-1045626"></a>mock-up, simulate, and analyze logic at the board-level. See the example <a href="05_floorplan.html#13326">Drawing Logic Scenarios at the Board Level</a>.</li><li>
+<a id="pgfId-1045627"></a>develop logic and constraints for high-speed circuits from scratch without a netlist.</li><li>
+<a id="pgfId-1045633"></a>ensure quality by implementing re-use of design elements and critical components. You can do this easily by importing technology files, board geometry, and setup data from other designs. For further details, see <a href="05_floorplan.html#56736">Importing Setup Data</a>.</li><li>
+<a id="pgfId-1045696"></a>perform test routing using proposed electrical constraints to ensure high-speed design rules are achievable before passing them on to the Layout Designer. </li><li>
+<a id="pgfId-1045642"></a>ensure design compliance by performing quick post-route verification checks using an extensive set of post-route analysis capabilities. Checks are performed directly from the board database. Results are available with comprehensive waveform viewing and reports. See <a href="08_verify.html#41597">Chapter 8, &#8220;Post-Route Verification,&#8221;</a></li></ul>
+
+
+
+
+
+
+
+<p>
+<a id="pgfId-1045557"></a></p>
+<p>
+<a id="pgfId-1045724"></a>PCB SI Floorplanning focuses on two main design tasks.</p>
+<ul><li>
+<a id="pgfId-1038085"></a>Board Setup</li><li>
+<a id="pgfId-1038089"></a>Logic</li></ul>
+
+
+<h2>
+<a id="pgfId-1038094"></a><a id="69689"></a>Board Setup</h2>
+
+<p>
+<a id="pgfId-1038098"></a>Board setup involves defining or editing one or more of the following.</p>
+<ul><li>
+<a id="pgfId-1038099"></a>Cross-section Stackup and Materials</li><li>
+<a id="pgfId-1045990"></a>Board Outline</li><li>
+<a id="pgfId-1038104"></a>Room Outlines</li><li>
+<a id="pgfId-1038105"></a>Plane Outline</li><li>
+<a id="pgfId-1038547"></a>Keepouts</li></ul>
+
+
+
+
+
+<h3>
+<a id="pgfId-1038549"></a><a id="19516"></a>Cross-Section Stackup and Materials</h3>
+
+<p>
+<a id="pgfId-1038550"></a>The Cross-Section Stackup Editor presents the ordered layers of your board in a worksheet-like format. Each layer is identified in the worksheet within the <em>Etch Subclass </em>column. <br />The attributes of each etch subclass are presented in the cells of the worksheet. Information regarding layer type, thickness, spacing, electrical characteristics, and same layer or layer-to-layer differential impedance are listed. You can define this information initially using the <em><a href="02_flow.html#si_design_setup">SI Design Setup</a></em> command. However, as the Design Engineer, you should check and (if necessary) edit the stackup before commencing with signal integrity simulation on your design.</p>
+<p>
+<a id="pgfId-1046829"></a>When you simulate, the etch in the design is processed through a field solver to generate models. Therefore, a proper cross-section is necessary for accurate post-route analysis and for providing information for interconnect in topologies extracted into SigXplorer. The cross-section also determines the propagation velocity of a signal as well. This propagation velocity determines the value of delay when it is expressed as a constraint value in terms of time rather than length. The use of percentage in propagation delay rules is also based on the propagation velocity of the signal.</p>
+
+<p><strong>Figure 5-1
+<a id="pgfId-1046830"></a>Conceptual View of a Layout Cross-Section</strong></p>
+<p>
+<a id="pgfId-1046834"></a></p>
+<div class="webflare-div-image">
+<img width="423" height="346" src="images/05_floorplan-2.gif" /></div>
+<h4>
+<a id="pgfId-1038168"></a>To access the Stackup Editor</h4>
+<ul><li>
+<a id="pgfId-1046026"></a>In SI, choose <em>Setup &#8211; Cross-section</em>.<br />
+<a id="pgfId-1046030"></a>The Cross section editor appears as shown in <a href="05_floorplan.html#54263">Figure&#160;5-2</a>.<br /><strong class="webflare-fig-line-height">Figure 5-2
+<a id="pgfId-1038189"></a><a id="54263"></a>Cross section editor</strong>
+<a id="pgfId-1038196"></a><div class="webflare-div-image">
+<img width="668" height="457" src="images/05_floorplan-3.gif" /></div></li></ul>
+
+
+
+
+
+<p>
+<a id="pgfId-1038150"></a>You can modify most attributes by entering a new value in the appropriate cell. Exceptions to this include the extreme outer layers, which have a fixed name called SURFACE and no definable attributes, and the extreme outer CONDUCTOR layers, which have a fixed name of TOP and BOTTOM. You cannot change the name TOP and BOTTOM but you can change the attribute values on those layers.</p>
+<p>
+<a id="pgfId-1038152"></a>When you change the value of an attribute, other attributes may be re-calculated. For example, if you change the value of the <em>Line Width</em>, the <em>Impedance</em> changes as well.</p>
+
+<h4>
+<a id="pgfId-1038428"></a><a id="24956"></a><a id="28493"></a>The Materials Editor</h4>
+
+<p>
+<a id="pgfId-1046046"></a>The Materials Editor presents materials that are currently defined in your Materials file. <br />Each row represents a single material with columns representing the various attributes of the material. You can resize the dialog box to fully display an extended range of materials available in the Materials file (the default size displays twenty materials). It is also possible to reduce the size of the dialog box. However, the scale worksheet itself remains fixed.</p>
+
+<h4>
+<a id="pgfId-1046050"></a>To access the Materials Editor</h4>
+<ul><li>
+<a id="pgfId-1046051"></a>In SI, choose <em>Setup &#8211; Materials</em>.<br />
+<a id="pgfId-1046055"></a>The Materials Editor appears as shown in <a href="05_floorplan.html#96553">Figure 5-3</a><br /><strong class="webflare-fig-line-height">Figure 5-3
+<a id="pgfId-1046047"></a><a id="96553"></a>The Materials Editor</strong>
+<a id="pgfId-1038575"></a><div class="webflare-div-image">
+<img width="669" height="342" src="images/05_floorplan-4.gif" /></div></li></ul>
+
+
+
+
+
+<p>
+<a id="pgfId-1038529"></a>The Materials Editor automatically displays default values that are in either the <code>materials.dat</code> file (PCB SI) or the <code>mmcmmat.dat</code> file (IC Packaging Design). <br />These are read-only files provided by Allegro that contain the most common industry fabrication materials. By default, they are located in the following directory within your installation hierarchy.</p>
+
+<a id="pgfId-1038534"></a><pre class="webflare-courier-new webflare-syx-syntax codeContent">
+$ALLEGRO_INSTALL_DIRECTORY/share/pcb/text</pre>
+
+<p>
+<a id="pgfId-1038690"></a>You can modify material names and most other attribute values by entering a new value in the appropriate cell. Two exceptions are <em>In Use</em> and <em>Type</em> which cannot be changed.</p>
+<p>
+<a id="pgfId-1046063"></a>To add or modify materials in your design, refer to the procedures for the <a href="../dcoms/dchap.html#define_materials">define materials</a> command in the <em>Allegro PCB and Package Physical Layout Command Reference</em>.</p>
+
+<h3>
+<a id="pgfId-1038433"></a><a id="53626"></a>Board Outline</h3>
+
+<p>
+<a id="pgfId-1038437"></a>Use the Board Outline dialog box to create a new board outline or modify, move, or delete an existing one. Creating a board outline automatically generates package and route keepins. Modifying or moving a board outline automatically regenerates those keepins.</p>
+
+<p><strong>Figure 5-4
+<a id="pgfId-1039020"></a><a id="79249"></a>The Board Outline Dialog Box</strong></p>
+<p>
+<a id="pgfId-1039024"></a></p>
+<div class="webflare-div-image">
+<img src="images/board_outline_create_db.gif" /></div>
+<h4>
+<a id="pgfId-1038896"></a><a id="36663"></a>To initiate a board outline task</h4>
+<ol><li>
+<a id="pgfId-1038897"></a>In SI, choose <em>Setup &#8211; Outlines &#8211; Board Outline</em>.<br />
+<a id="pgfId-1039049"></a>The Board Outline dialog box appears as shown in <a href="05_floorplan.html#79249">Figure 5-4</a></li><li>
+<a id="pgfId-1038899"></a>Choose the task you want to perform from the <em>Command Operations</em> area.<br />
+<a id="pgfId-1039322"></a>For further steps, refer to the procedures for the <a href="../bcoms/bchap.html#board_outline">board outline</a> command in the <em>Allegro PCB and Package Physical Layout Command Reference</em>.</li></ol>
+
+
+
+<h3>
+<a id="pgfId-1038507"></a><a id="41123"></a>Room Outlines</h3>
+
+<p>
+<a id="pgfId-1039713"></a>Use the Room Outline dialog box to create rooms, specify room names, specify the board layer on which a room is situated, and control DRC errors. Assignment of a physical area to a grouping provides instant feedback during critical placement to assure compliance with grouping constraints.</p>
+
+<p><strong>Figure 5-5
+<a id="pgfId-1039739"></a>Room Outline Dialog Box</strong></p>
+<p>
+<a id="pgfId-1040027"></a></p>
+<div class="webflare-div-image">
+<img src="images/room_outline_create_db.gif" /></div>
+<h4>
+<a id="pgfId-1040036"></a><a id="50216"></a>To initiate a room outline task</h4>
+<ol><li>
+<a id="pgfId-1040229"></a>In SI, choose <em>Setup &#8211; Outlines &#8211; Room Outline</em>.<br />
+<a id="pgfId-1040230"></a>The Room Outline dialog box appears.</li><li>
+<a id="pgfId-1040231"></a>Choose the task you want to perform from the <em>Command Operations</em> area.<br />
+<a id="pgfId-1046109"></a>For further steps, refer to the procedures for the <a href="../rcoms/rchap.html#room_outline">room outline</a> command in the <em>Allegro PCB and Package Physical Layout Command Reference</em>.</li></ol>
+
+
+
+<h3>
+<a id="pgfId-1040029"></a><a id="17868"></a>Plane Outlines</h3>
+
+<p>
+<a id="pgfId-1041050"></a>Use the Plane Outline dialog box for creating new plane outlines or modifying, moving, or deleting an existing outline.</p>
+
+<p><strong>Figure 5-6
+<a id="pgfId-1041372"></a>Plane Outline Dialog Box</strong></p>
+<p>
+<a id="pgfId-1041368"></a></p>
+<div class="webflare-div-image">
+<img src="images/plane_outline_create_db.gif" /></div>
+<h4>
+<a id="pgfId-1041272"></a><a id="98276"></a>To initiate a plane outline task</h4>
+<ol><li>
+<a id="pgfId-1041273"></a>In SI, choose <em>Setup &#8211; Outlines &#8211; Plane Outline</em>.<br />
+<a id="pgfId-1041274"></a>The Plane Outline dialog box appears.</li><li>
+<a id="pgfId-1041275"></a>Choose the task you want to perform from the <em>Command Operations</em> area.<br />
+<a id="pgfId-1041276"></a>For further steps, refer to the procedures for the <a href="../bcoms/bchap.html#board_plane">board plane</a> command in the <em>Allegro PCB and Package Physical Layout Command Reference</em>.</li></ol>
+
+
+
+<h3>
+<a id="pgfId-1041408"></a><a id="24340"></a>Keepouts</h3>
+
+<p>
+<a id="pgfId-1041361"></a>Use the Keepout dialog box, for defining keepout areas to isolate sections within the board outline where component placement is not allowed. You can create, modify, or delete keepout areas. This allows you to define areas of the board without having to use one of the <code>add shape</code> commands.</p>
+
+<p><strong>Figure 5-7
+<a id="pgfId-1041383"></a>Keepout Dialog Box</strong></p>
+<p>
+<a id="pgfId-1041387"></a></p>
+<div class="webflare-div-image">
+<img src="images/keepout_create_db.gif" /></div>
+<h4>
+<a id="pgfId-1041362"></a><a id="73137"></a>To initiate a keepout task</h4>
+<ol><li>
+<a id="pgfId-1041363"></a>In SI, choose <em>Setup &#8211; Outlines &#8211; Keepout</em>.<br />
+<a id="pgfId-1041320"></a>The Keepout dialog box appears.</li><li>
+<a id="pgfId-1041321"></a>Choose the task you want to perform from the <em>Command Operations</em> area.<br />
+<a id="pgfId-1041322"></a>For further steps, refer to the procedures for the <a href="../bcoms/bchap.html#board_keepout">board keepout</a> command in the <em>Allegro PCB and Package Physical Layout Command Reference</em>.</li></ol>
+
+
+
+<h3>
+<a id="pgfId-1045745"></a><a id="56736"></a>Importing Setup Data</h3>
+
+<p>
+<a id="pgfId-1046245"></a>Rather than setting up your board from scratch, you can also import setup data from external sources such as board files as well as technology files that have been exported from other designs. Importing setup data into your design is one way to implement re-use of board geometry, parameters, constraints, and critical components that have been quality proven in other designs.</p>
+<p>
+<a id="pgfId-1046247"></a>The following table lists the setup data that can be imported into your design along with its corresponding source.</p>
+<p>
+<a id="pgfId-1046308"></a></p>
+<table class="webflareTable" id="#id1046273">
+<caption style="text-align:left;"><p>
+</p><h4>Table 5-1
+<a id="pgfId-1046275"></a>Board Setup Data</h4></caption>
+<tbody><tr>
+<th class="webflareTh" colspan="1" rowspan="1">
+<span class="tbl-head" id="#id1046279">
+<a id="pgfId-1046279"></a>Source</span>
+</th>
+<th class="webflareTh" colspan="1" rowspan="1">
+<span class="tbl-head" id="#id1046281">
+<a id="pgfId-1046281"></a>Data</span>
+</th>
+</tr>
+<tr>
+<td class="webflareTd" colspan="1" rowspan="1">
+<p>
+<a id="pgfId-1046300"></a>Board File (<code>.brd</code>)</p>
+</td>
+<td class="webflareTd" colspan="1" rowspan="1">
+<p>
+<a id="pgfId-1046302"></a>Board Outline</p>
+<p>
+<a id="pgfId-1046303"></a>Cross-section</p>
+<p>
+<a id="pgfId-1046304"></a>Keepouts</p>
+<p>
+<a id="pgfId-1046305"></a>Rooms</p>
+<p>
+<a id="pgfId-1046306"></a>Placed Components</p>
+<p>
+<a id="pgfId-1046307"></a>Electrical Rules</p>
+</td>
+</tr>
+<tr>
+<td class="webflareTd" colspan="1" rowspan="1">
+<p>
+<a id="pgfId-1046624"></a></p>
+</td>
+<td class="webflareTd" colspan="1" rowspan="1">
+<p>
+<a id="pgfId-1046626"></a></p>
+</td>
+</tr>
+<tr>
+<td class="webflareTd" colspan="1" rowspan="1">
+<p>
+<a id="pgfId-1046607"></a>Technology File (<code>.tech</code>)</p>
+</td>
+<td class="webflareTd" colspan="1" rowspan="1">
+<p>
+<a id="pgfId-1046609"></a>User units</p>
+<p>
+<a id="pgfId-1046610"></a>Drawing parameters</p>
+<p>
+<a id="pgfId-1046611"></a>Layout cross section parameters</p>
+<p>
+<a id="pgfId-1046612"></a>DRC modes for constraints</p>
+<p>
+<a id="pgfId-1046613"></a>Spacing constraint sets</p>
+<p>
+<a id="pgfId-1046614"></a>Physical constraint sets</p>
+<p>
+<a id="pgfId-1046615"></a>Electrical constraint sets</p>
+<p>
+<a id="pgfId-1046616"></a>Design constraints</p>
+<p>
+<a id="pgfId-1046617"></a>Constraint assignment tables</p>
+<p>
+<a id="pgfId-1046618"></a>User property definitions</p>
+</td>
+</tr>
+</tbody></table>
+
+<h4>
+<a id="pgfId-1046330"></a>Importing a Technology File</h4>
+
+<p>
+<a id="pgfId-1046336"></a>Use the Tech file In dialog box, for importing a technology file into your design. A tech file is in ASCII format. Results of the import appear in the <code>tf_read.log</code> file within the current directory. Any errors, warnings, and conflicts are categorized according to their severity. </p>
+
+<div class="webflare-information-macro webflare-macro-information">
+<a id="pgfId-1046340"></a>
+When you read the tech file in, all values in the design are overwritten. If a constraint in the tech file does not exist in the design, it is added. If an error occurs in the tech file, it continues to be read with warning and error messages written to the log file. Your design is not updated if an error occurs.</div>
+<h4>
+<a id="pgfId-1046265"></a>To access the Tech File In dialog box</h4>
+<ul><li>
+<a id="pgfId-1046255"></a>In SI, choose <em>File &#8211; Import &#8211; Techfile</em>.<br />
+<a id="pgfId-1046259"></a>The Tech File In dialog box appears as shown in <a href="05_floorplan.html#63298">Figure 5-8</a><br /><strong class="webflare-fig-line-height">Figure 5-8
+<a id="pgfId-1046368"></a><a id="63298"></a>Tech file In Dialog Box</strong>
+<a id="pgfId-1046372"></a><div class="webflare-div-image">
+<img src="images/techfile_in_db.gif" /></div></li></ul>
+
+
+
+
+
+<p>
+<a id="pgfId-1046191"></a>To import a technology file into your design, refer to the procedures for the <a href="../tcoms/tchap.html#techfile_in">techfile in</a> command in the <em>Allegro PCB and Package Physical Layout Command Reference</em>.</p>
+<p>
+<a id="pgfId-1046380"></a>For further details, see <em><a actuate="user" class="URL" href="../algrolibdev/chap6.html#firstpage" show="replace" xml:link="simple">Chapter 6, Creating and Using Technology Files</a></em> in <em>Allegro PCB and Package User Guide: Defining and Developing Libraries</em>.</p>
+
+<h4>
+<a id="pgfId-1046408"></a>Importing a Board File</h4>
+
+<p>
+<a id="pgfId-1046409"></a>Use the Import Board dialog box, for selectively importing board design data from another board into your current design. The directory path and file name of the source board appear at the top of the dialog box.</p>
+
+<div class="webflare-information-macro webflare-macro-information">
+<a id="pgfId-1046410"></a>
+If conflicts are detected between existing data and source data while importing a board into your design, a Conflicts dialog box appears. This dialog box gives you the opportunity to either overwrite existing data with the source data or reject the source data in its entirety. You can also choose to do this on an item-by-item basis.</div>
+<h4>
+<a id="pgfId-1046411"></a>To access the Import Board dialog box</h4>
+<ol><li>
+<a id="pgfId-1046412"></a>In SI, choose <em>File &#8211; Import &#8211; Board</em>.<br />
+<a id="pgfId-1046416"></a>The Boardoutline Import dialog box appears as shown in <a href="05_floorplan.html#39551">Figure 5-9</a></li><li>
+<a id="pgfId-1046563"></a>Navigate and select the board file that you want to import into your design, then click <em>Open</em>.<br />
+<a id="pgfId-1046570"></a>The Import Board dialog box appears as shown in <a href="05_floorplan.html#87663">Figure&#160;5-10</a><br /><strong class="webflare-fig-line-height">Figure 5-9
+<a id="pgfId-1046418"></a><a id="39551"></a>Boardoutline Import Dialog Box</strong>
+<a id="pgfId-1046422"></a><div class="webflare-div-image">
+<img width="452" height="338" src="images/05_floorplan-11.gif" /></div><strong>Figure 5-10
+<a id="pgfId-1046581"></a><a id="87663"></a>Import Board Dialog Box</strong>
+<a id="pgfId-1046585"></a><div class="webflare-div-image">
+<img src="images/import_board_db.gif" /></div></li></ol>
+
+
+
+
+
+
+
+
+
+
+<p>
+<a id="pgfId-1046424"></a>To import a board file into your design, refer to the procedures for the <a href="../bcoms/bchap.html#boardoutline_import">boardoutline import</a> command in the <em>Allegro PCB and Package Physical Layout Command Reference</em>.</p>
+
+<h2>
+<a id="pgfId-1045741"></a><a id="61993"></a>Defining Logic</h2>
+
+<p>
+<a id="pgfId-1045742"></a>Defining logic involves one or more of the following tasks.</p>
+<ul><li>
+<a id="pgfId-1044065"></a><a href="05_floorplan.html#67336">Component Creation and Placement</a></li><li>
+<a id="pgfId-1044069"></a><a href="05_floorplan.html#34653">Device Model Creation and Assignment</a></li><li>
+<a id="pgfId-1044093"></a><a href="05_floorplan.html#25996">Netlist Creation</a></li></ul>
+
+
+
+<h3>
+<a id="pgfId-1044094"></a><a id="13326"></a>Drawing Logic Scenarios at the Board Level</h3>
+
+<p>
+<a id="pgfId-1043293"></a>You may want to simulate certain layout configurations that are best mocked-up directly at the board level. This often comes up when you want to test a layout geometry that is not part of the standard SigXplorer Interconnect library. SIoffers layout features that provide an easy way to draw and test most any configuration imaginable. For further details and to review an example, see <a href="05_floorplan.html#91555">Logic Scenario Mock-up Example - A Look at Self-Coupling</a>.<a id="54743"></a></p>
+
+<h3>
+<a id="pgfId-1044097"></a><a id="67336"></a>Component Creation and Placement</h3>
+
+<p>
+<a id="pgfId-1043091"></a>Use the Parts List dialog box to view and edit the parts list of your design or to create temporary component parts from scratch.</p>
+
+<h4>
+<a id="pgfId-1046912"></a>To access the Parts List dialog box</h4>
+<ul><li>
+<a id="pgfId-1046913"></a>In SI, choose <em>Logic - Parts List</em>.<br />
+<a id="pgfId-1046921"></a>The Parts List dialog box appears as shown in <a href="05_floorplan.html#76905">Figure 5-11</a><br /><strong class="webflare-fig-line-height">Figure 5-11
+<a id="pgfId-1046882"></a><a id="76905"></a>Parts List Dialog Box</strong>
+<a id="pgfId-1046898"></a><div class="webflare-div-image">
+<img src="images/parts_list_R1_db.gif" /></div></li></ul>
+
+
+
+
+
+<p>
+<a id="pgfId-1046651"></a>To edit the parts list in your design or create / modify temporary components, refer to the procedures for the <a href="../ecoms/echap.html#edit_parts">edit parts</a> command in the <em>Allegro PCB and Package Physical Layout Command Reference</em>.</p>
+<p>
+<a id="pgfId-1046694"></a><a id="74448"></a>After creating components, use the Placement dialog box to interactively place the components into your design. In addition to components, the tabbed interface allows you to choose placement symbol types and modules. </p>
+
+<h4>
+<a id="pgfId-1046699"></a>To access the Placement dialog box</h4>
+<ul><li>
+<a id="pgfId-1046700"></a>In SI, choose <em>Place - Manually</em>.<br />
+<a id="pgfId-1046704"></a>The Parts List dialog box appears as shown in <a href="05_floorplan.html#36833">Figure 5-12</a><br /><strong class="webflare-fig-line-height">Figure 5-12
+<a id="pgfId-1043010"></a><a id="36833"></a>Placement Dialog Box</strong>
+<a id="pgfId-1046953"></a><div class="webflare-div-image">
+<img src="images/placement_R1_db.gif" /></div></li></ul>
+
+
+
+
+
+<p>
+<a id="pgfId-1046954"></a>To place components in your design, refer to the procedures for the <a href="../pcoms/pchap.html#place_manual">place manual</a> command in the Allegro PCB and Package Physical Layout Command Reference.</p>
+
+<h3>
+<a id="pgfId-1043035"></a><a id="34653"></a>Device Model Creation and Assignment</h3>
+
+<p>
+<a id="pgfId-1043114"></a>Once components are placed, use the Signal Model Assignment dialog box to either create new or select existing device models and assign them to the components in your design. </p>
+<p>
+<a id="pgfId-1043115"></a>When you simulate a net, TLsim develops circuit models using the device models and interconnect in your design. This means that you must assign a device model to each component in the design and point TLsim to the device model libraries (where device model files are stored). Model assignments are made to individual components or to all components having the same device file.</p>
+<p>
+<a id="pgfId-1043169"></a>During device model assignment, you can select models from the default model library, the standard digital device model library, or from other device model libraries that you have developed and made available through the Library Browser. You can also create Espice and IBIS device models from scratch directly from the Signal Model Assignment dialog box. <br />IBIS device models are created from IO Buffer Information Sheet (IBIS) standard data, or by editing existing models to accurately characterize devices.</p>
+
+<h4>
+<a id="pgfId-1046715"></a>To access the Signal Model Assignment dialog box</h4>
+<ul><li>
+<a id="pgfId-1046716"></a>In SI, choose <em>Analyze &#8211; SI/EMI Sim &#8211; Model</em><br />
+<a id="pgfId-1046720"></a>The Signal Model Assignment dialog box appears.</li></ul>
+
+
+<p>
+<a id="pgfId-1043229"></a>To create and assign device models, refer to the procedures for the <a href="../scoms/schap.html#signal_model">signal model</a> command in the Allegro PCB and Package Physical Layout Command Reference.</p>
+
+<h3>
+<a id="pgfId-1043051"></a><a id="25996"></a>Netlist Creation</h3>
+
+<p>
+<a id="pgfId-1043321"></a>SI lets you create a netlist without having to draw a schematic. This unique feature enables you to explore various layout geometries at the board level. Once components are placed and device models are assigned, you can use the Edit Nets dialog box to create a netlist that defines the interconnect between the components. </p>
+<p>
+<a id="pgfId-1043509"></a>Using the ratsnest of the net, you can perform certain signal integrity simulations on the layout. However, If your simulations require etch (for example, self-coupling analysis), you can use the <code>add connect</code> command to route the connections interactively before you simulate.</p>
+
+<h4>
+<a id="pgfId-1046735"></a>To access the Edit Nets dialog box</h4>
+<ul><li>
+<a id="pgfId-1046736"></a>In SI, choose <em>Logic &#8211; Edit Nets.</em><br />
+<a id="pgfId-1046740"></a>The Edit Nets dialog box appears as shown in <a href="05_floorplan.html#57216">Figure&#160;5-13</a>.<br /><strong class="webflare-fig-line-height">Figure 5-13
+<a id="pgfId-1043510"></a><a id="57216"></a>Edit Nets Dialog Box</strong>
+<a id="pgfId-1043514"></a><div class="webflare-div-image">
+<img src="images/edit_nets_R1_db.gif" /></div></li></ul>
+
+
+
+
+
+<p>
+<a id="pgfId-1043807"></a>To create a netlist from scratch or to modify an existing netlist in your design, refer to the procedures for the <a href="../ecoms/echap.html#edit_nets">edit nets</a> command in the Allegro PCB and Package Physical Layout Command Reference.</p>
+
+<h3>
+<a id="pgfId-1042393"></a><a id="91555"></a>Logic Scenario Mock-up Example - A Look at Self-Coupling</h3>
+
+<p>
+<a id="pgfId-1042306"></a>The following example illustrates how you can use the logic features in SI to quickly mock-up, simulate, and analyze a circuit for self-coupling. A net routed in a serpentine pattern is the basis for the analysis as shown in <a href="05_floorplan.html#87377">Figure 5-14</a></p>
+
+<div class="webflare-information-macro webflare-macro-tip">
+<a id="pgfId-1043946"></a>
+You can use the same steps outlined in this example to invent, mock-up and simulate many other logic scenarios at the board level.</div>
+<p><strong>Figure 5-14
+<a id="pgfId-1043964"></a><a id="87377"></a>Self-coupling Test Scenario</strong></p>
+<p>
+<a id="pgfId-1043968"></a></p>
+<div class="webflare-div-image">
+<img src="images/serp_net2.gif" /></div>
+<h4>
+<a id="pgfId-1042240"></a>Step 1 - Board Setup</h4>
+
+<p>
+<a id="pgfId-1042316"></a>In order to perform self-coupling simulations at the board level, you need to perform the following setup tasks.</p>
+<ul><li>
+<a id="pgfId-1042324"></a>Create a simple rectangular board outline on an empty canvas as shown in <a href="05_floorplan.html#58284">Figure 5-15</a>. See <a href="05_floorplan.html#53626">Board Outline</a> for details.<br /><strong class="webflare-fig-line-height">Figure 5-15
+<a id="pgfId-1043900"></a><a id="58284"></a>Drawing the PCB Mock-up Outline</strong>
+<a id="pgfId-1043904"></a><div class="webflare-div-image">
+<img src="images/board_outline_draw_rect.gif" /></div></li><li>
+<a id="pgfId-1042328"></a>Edit the default stackup and add a ground layer to provide an impedance for the trace as shown in <a href="05_floorplan.html#65695">Figure&#160;5-16</a>. Refer to the procedure <a href="05_floorplan.html#24956">The Materials Editor</a> for complete details.<br /><strong class="webflare-fig-line-height">Figure 5-16
+<a id="pgfId-1043934"></a><a id="65695"></a>Adding a Ground Layer</strong>
+<a id="pgfId-1044008"></a><div class="webflare-div-image">
+<img src="images/add_ground_layer.gif" /></div></li></ul>
+
+
+
+
+
+
+
+
+
+
+<h4>
+<a id="pgfId-1044009"></a>Step 2 - Component Creation</h4>
+
+<ul><li>
+<a id="pgfId-1044010"></a>Create some temporary components to support the self-coupling scenario as shown in <a href="05_floorplan.html#95839">Figure 5-17</a>. Refer to the procedures in the <a href="../ecoms/echap.html#edit_parts">edit parts</a> command in the <em>Allegro PCB and Package Physical Layout Command Reference</em> for complete details.<br /><strong class="webflare-fig-line-height">Figure 5-17
+<a id="pgfId-1044020"></a><a id="95839"></a>Creating Temporary Components</strong>
+<a id="pgfId-1044024"></a><div class="webflare-div-image">
+<img src="images/parts_list_U1_db.gif" /></div></li></ul>
+
+
+
+
+<h4>
+<a id="pgfId-1044166"></a>Step 3 - Component Placement</h4>
+
+<ul><li>
+<a id="pgfId-1044167"></a>Place the temporary components on the board as shown in <a href="05_floorplan.html#96501">Figure&#160;5-19</a>. Refer to the procedures for the <code>place manual</code> command in the Allegro PCB and Package Physical Layout Command Reference for complete details.<br /><div class="webflare-information-macro webflare-macro-note">
+<a id="pgfId-1044168"></a>Due to the fact that the component package (FAKE) specified in the Parts List dialog box does not exist yet, you are prompted to first create a temporary package for the components. Proceed with temporary package creation by clicking <em>OK</em> in the Create Temporary Package dialog box that appears as shown in <a href="05_floorplan.html#70822">Figure 5-18</a>.</div><strong>Figure 5-18
+<a id="pgfId-1044203"></a><a id="70822"></a>Creating a Temporary Package</strong>
+<a id="pgfId-1044207"></a><div class="webflare-div-image">
+<img src="images/create_temp_pkg.gif" /></div><strong>Figure 5-19
+<a id="pgfId-1044149"></a><a id="96501"></a>Placing the Temporary Components</strong>
+<a id="pgfId-1044188"></a><div class="webflare-div-image">
+<img src="images/place_U1.gif" /></div></li></ul>
+
+
+
+
+
+
+
+
+<h4>
+<a id="pgfId-1042254"></a>Step 4 - Device Model Creation and Assignment</h4>
+
+<ul><li>
+<a id="pgfId-1042258"></a>Create an IBIS device model and assign it to the temporary components as shown in <a href="05_floorplan.html#94267">Figure&#160;5-21</a>, <a href="05_floorplan.html#43229">Figure&#160;5-22</a>, <a href="05_floorplan.html#32183">Figure&#160;5-23</a>, and <a href="05_floorplan.html#56089">Figure&#160;5-24</a>.<br /><b>Note:</b><br />
+<a id="pgfId-1042259"></a><ul><li>
+<a id="pgfId-1044248"></a>Click <em>Yes</em> when prompted to add ground and power pins to the model.</li><li>
+<a id="pgfId-1044252"></a>Clicking <em>OK</em> in the Signal Analysis dialog box after creating the model automatically assigns it to the DUD components.</li></ul></li></ul>
+
+
+
+<p>
+<a id="pgfId-1044227"></a>Refer to the procedures for the <code>signal model</code> command in the Allegro PCB and Package Physical Layout Command Reference for complete details.</p>
+
+<p><strong>Figure 5-20
+<a id="pgfId-1044273"></a><a id="38345"></a>Launching the Create Device Model Dialog Box for the DUD Components</strong></p>
+<p>
+<a id="pgfId-1044277"></a></p>
+<div class="webflare-div-image">
+<img src="images/create_device_model_db_launch.gif" /></div>
+<p><strong>Figure 5-21
+<a id="pgfId-1044289"></a><a id="94267"></a>Specifying the Device Model Type</strong></p>
+<p>
+<a id="pgfId-1044300"></a></p>
+<div class="webflare-div-image">
+<img src="images/create_device_model_U1_db.gif" /></div>
+<p><strong>Figure 5-22
+<a id="pgfId-1044305"></a><a id="43229"></a>Creating the IBIS Device Model</strong></p>
+<p>
+<a id="pgfId-1044309"></a></p>
+<div class="webflare-div-image">
+<img src="images/create_IBIS_device_model_db.gif" /></div>
+<p><strong>Figure 5-23
+<a id="pgfId-1044314"></a><a id="32183"></a>Power and Ground Pins Prompts</strong></p>
+<p>
+<a id="pgfId-1044318"></a></p>
+<div class="webflare-div-image">
+<img width="471" height="125" src="images/05_floorplan-26.gif" /></div>
+<p><strong>Figure 5-24
+<a id="pgfId-1044334"></a><a id="56089"></a>Device Model Assignment</strong></p>
+<p>
+<a id="pgfId-1044338"></a></p>
+<div class="webflare-div-image">
+<img src="images/device_model_assign_U1-2.gif" /></div>
+<p><strong>Figure 5-25
+<a id="pgfId-1044405"></a>Device Model Report</strong></p>
+<p>
+<a id="pgfId-1044409"></a></p>
+<div class="webflare-div-image">
+<img src="images/device_model_assign_U1-2_report..gif" /></div>
+<h4>
+<a id="pgfId-1042271"></a>Step 5 - Netlist Creation</h4>
+
+<ul><li>
+<a id="pgfId-1042275"></a>Create a netlist comprised of two nets (SERPENTINE and NEIGHBOR) that connect the pins of the temporary components as shown in <a href="05_floorplan.html#94245">Figure 5-26</a>.<br /><b>Note:</b><br />
+<a id="pgfId-1044393"></a><ul><li>
+<a id="pgfId-1044432"></a>Click <em>Yes</em> when presented with the following prompts.</li><li>
+<a id="pgfId-1044440"></a><code>The net name &lt;netname&gt; doesn&#8217;t currently exist. Do you want to create a new net?</code><ul><li>
+<a id="pgfId-1044446"></a><code>Do you want the pins in this side&#8217;s pin list added to the new net?</code></li></ul></li><li>
+<a id="pgfId-1044491"></a>Once the netlist is created, you are able to perform certain simulations on the layout using the ratsnest. However, in order to perform a self-coupling simulation, you must first route the SERPENTINE net back onto itself. This is addressed in 
+<a href="05_floorplan.html#71991">Step 6 - Routing</a>.</li></ul></li></ul>
+
+
+
+
+
+<p>
+<a id="pgfId-1044495"></a>Refer to the procedures for the <code>edit nets</code> command in the Allegro PCB and Package Physical Layout Command Reference for complete details.</p>
+
+<p><strong>Figure 5-26
+<a id="pgfId-1044397"></a><a id="94245"></a>Creating a Netlist from Scratch</strong></p>
+<p>
+<a id="pgfId-1044401"></a></p>
+<div class="webflare-div-image">
+<img width="641" height="400" src="images/05_floorplan-29.gif" /></div>
+<h4>
+<a id="pgfId-1044474"></a><a id="71991"></a>Step 6 - Routing</h4>
+
+<ul><li>
+<a id="pgfId-1044479"></a>Route the net named SERPENTINE back onto itself for a 3 inch run as shown in <a href="05_floorplan.html#11991">Figure 5-27</a>. This step is required for the self-coupling simulation.</li></ul>
+<p>
+<a id="pgfId-1044500"></a>Refer to the procedures for the <code>add connect</code> command in the Allegro PCB and Package Physical Layout Command Reference for complete details.</p>
+
+<p><strong>Figure 5-27
+<a id="pgfId-1044514"></a><a id="11991"></a>Routing a Net to Simulate</strong></p>
+<p>
+<a id="pgfId-1044518"></a></p>
+<div class="webflare-div-image">
+<img width="668" height="239" src="images/05_floorplan-30.gif" /></div>
+<h4>
+<a id="pgfId-1044477"></a>Step 7- Simulation and Analysis</h4>
+
+<ul><li>
+<a id="pgfId-1042285"></a>Simulate the SERPENTINE net to analyze for self-coupling.<ol><li>
+<a id="pgfId-1042292"></a>Zoom in on an area where the trace runs parallel and measure the air gap as shown in <a href="05_floorplan.html#94196">Figure 5-28</a>. This value is used later to set the size of the geometry window around the net where the coupling is checked.<br />
+<a id="pgfId-1044664"></a>Refer to the procedures for the <code>show measure</code> command in the Allegro PCB and Package Physical Layout Command Reference for complete details.<br /><strong class="webflare-fig-line-height">Figure 5-28
+<a id="pgfId-1044611"></a><a id="94196"></a>Measuring the Air Gap</strong>
+<a id="pgfId-1044615"></a><div class="webflare-div-image">
+<img width="668" height="385" src="images/05_floorplan-31.gif" /></div></li><li>
+<a id="pgfId-1044547"></a>Choose <em>Analyze &#8211; SI/EMI Sim &#8211; Probe</em>.<br />
+<a id="pgfId-1044601"></a>The Signal Analysis dialog box appears.</li><li>
+<a id="pgfId-1044551"></a>Click <em>Waveforms</em>.<br />
+<a id="pgfId-1044692"></a>The Waveform Analysis Generator dialog box appears.</li><li>
+<a id="pgfId-1044589"></a>Set up a Reflection simulation (no coupling) as shown in <a href="05_floorplan.html#17325">Figure&#160;5-29</a>.<br /><strong class="webflare-fig-line-height">Figure 5-29
+<a id="pgfId-1044707"></a><a id="17325"></a>Setting Up a Reflection Simulation (no coupling)</strong>
+<a id="pgfId-1044711"></a><div class="webflare-div-image">
+<img src="images/anal_wave_gen_db_reflec.gif" /></div></li><li>
+<a id="pgfId-1044702"></a>Generate and view the resulting waveforms in SigWave as shown in <a href="05_floorplan.html#60541">Figure&#160;5-30</a>.<br /><strong class="webflare-fig-line-height">Figure 5-30
+<a id="pgfId-1044820"></a><a id="60541"></a>Viewing Reflection Simulation Waveforms in SigWave</strong>
+<a id="pgfId-1044824"></a><div class="webflare-div-image">
+<img src="images/sigwave_serp_result1.gif" /></div></li><li>
+<a id="pgfId-1044557"></a>Repeat the simulation using the <em>Comprehensive</em> tab of the Analysis Waveform Generator (to specify coupling) setting the <em>Aggressor</em> <em>Switch Mode</em> to <code>Even</code> as shown in <a href="05_floorplan.html#55476">Figure&#160;5-31</a>.<br /><strong class="webflare-fig-line-height">Figure 5-31
+<a id="pgfId-1044882"></a><a id="55476"></a>Setting up for Coupling Simulation</strong>
+<a id="pgfId-1044886"></a><div class="webflare-div-image">
+<img src="images/anal_wave_gen_db_compreh.gif" /></div></li><li>
+<a id="pgfId-1044843"></a>Click <em>Preferences</em>.<br />
+<a id="pgfId-1044845"></a>The Analysis Preferences dialog box appears.</li><li>
+<a id="pgfId-1044844"></a>Display the <em>InterconnectModels</em> tab and set the <em>geometry window</em> to 30 mils (10 mils larger than the air gap) as shown in <a href="05_floorplan.html#35738">Figure&#160;5-32</a>.<br /><strong class="webflare-fig-line-height">Figure 5-32
+<a id="pgfId-1044891"></a><a id="35738"></a>Setting the Geometry Window Size</strong>
+<a id="pgfId-1044895"></a><div class="webflare-div-image">
+<img src="images/anal_pref_db_geom_win.gif" /></div></li><li>
+<a id="pgfId-1044573"></a>Generate and view the waveforms in Sigwave. </li><li>
+<a id="pgfId-1044874"></a>Turn on (superimpose) the original waveforms (no coupling) still resident in Sigwave and compare them against the new waveforms (coupling simulated) to analyze the effect of self-coupling on the signal as shown in <a href="05_floorplan.html#79314">Figure&#160;5-33</a>.<br /><strong class="webflare-fig-line-height">Figure 5-33
+<a id="pgfId-1044859"></a><a id="79314"></a>Analyzing Self-Coupling in Sigwave (Zoomed In</strong>
+<a id="pgfId-1044863"></a><div class="webflare-div-image">
+<img width="668" height="371" src="images/05_floorplan-36.gif" /></div>
+<a id="pgfId-1044576"></a>As you can see (zoomed in on the top-left corner of the waveforms) in <a href="05_floorplan.html#79314">Figure 5-33</a>, the impedance is skewed a little higher and the edge is moving slightly faster on the coupled waveform.</li></ol></li><li>
+<a id="pgfId-1044983"></a>Check the <code>interconn.spc</code> file generated by SigNoise.<br />
+<a id="pgfId-1044992"></a>In addition to viewing waveforms, you can extend your self-coupling analysis by checking the Spice file <code>interconn.spc</code> in your <code>.../signoise.run&gt;case&lt;</code><span class="webflare-courier-new" style="white-space:pre"><em>#</em></span><code>&gt;</code> directory. 
+Refer to <a href="05_floorplan.html#86404">Figure&#160;5-34</a>.<br /><strong class="webflare-fig-line-height">Figure 5-34
+<a id="pgfId-1044961"></a><a id="86404"></a>Coupled Trace Segment</strong>
+<a id="pgfId-1044965"></a><div class="webflare-div-image">
+<img src="images/interconn_spc_coupled_segment.gif" /></div><span class="indent-as-level2">
+<a id="pgfId-1038500"></a>The coupled, lossy and frequency-dependent line of code highlighted in this figure represents the three inch long section of parallel trace that was routed on the mock-up PCB. See <a href="05_floorplan.html#11991">Figure&#160;5-27</a>.</span></li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br /><a href="#pagetop">Return to top</a><br /></div>
+<!-- Begin Buttons --><!-- End Buttons -->
+<footer><nav class="navigation"><b><em><a href="04_simsetup.html" id="prev" title="Transmission Line Simulation">Transmission Line Simulation</a></em></b><b><em><a href="06_xtract.html" id="nex" title="Topology Extraction">Topology Extraction</a></em></b></nav><div>
+            For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2020, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved. 
+          </div></footer>
+</body></html>
